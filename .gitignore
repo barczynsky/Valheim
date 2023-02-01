@@ -1,0 +1,7 @@
+*
+
+!.gitignore
+!README.toml
+
+!Dockerfile
+!.dockerignore
