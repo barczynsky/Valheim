@@ -1,5 +1,4 @@
 FROM debian:stable-slim
-SHELL ["/bin/bash", "-c"]
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -8,6 +7,8 @@ RUN : &&\
 	apt update &&\
 	apt full-upgrade -y curl libc6:i386 &&\
 :
+
+RUN mv /bin/sh /bin/sh.orig && ln -s /bin/bash /bin/sh # SHELL for OCIv1 mode
 
 RUN : &&\
 	mkdir -p ~/Steam &&\
@@ -41,5 +42,7 @@ cd ~/Valheim\n\
   -password ${Valheim_SERVER_PASSWORD}\
 ' &&\
 :
+
+RUN rm /bin/sh && mv /bin/sh.orig /bin/sh # revert SHELL for OCIv1 mode
 
 CMD ["/root/start.sh"]
