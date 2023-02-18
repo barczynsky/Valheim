@@ -33,7 +33,7 @@ set -e\n\
 ~/Steam/steamcmd.sh +force_install_dir ~/Valheim +login anonymous +app_update 896660 validate +quit\n\
 export LD_LIBRARY_PATH="${HOME}/Valheim/linux64:${LD_LIBRARY_PATH}"\n\
 cd ~/Valheim\n\
-~/Valheim/valheim_server.x86_64\
+exec ~/Valheim/valheim_server.x86_64\
   -nographics\
   -batchmode\
   -port 2456\
@@ -44,5 +44,7 @@ cd ~/Valheim\n\
 :
 
 RUN rm /bin/sh && mv /bin/sh.orig /bin/sh # revert SHELL for OCIv1 mode
+
+STOPSIGNAL SIGINT
 
 CMD ["/root/start.sh"]
