@@ -5,7 +5,9 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN : &&\
 	dpkg --add-architecture i386 &&\
 	apt update &&\
-	apt full-upgrade -y curl libc6:i386 &&\
+	apt full-upgrade -y curl locales libc6:i386 &&\
+	sed '/^#\s*en_US.UTF-8/s/^#\s*//' -i /etc/locale.gen &&\
+	dpkg-reconfigure locales &&\
 :
 
 RUN mv /bin/sh /bin/sh.orig && ln -s /bin/bash /bin/sh # SHELL for OCIv1 mode
