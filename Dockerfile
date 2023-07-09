@@ -29,12 +29,14 @@ RUN : &&\
 ENV Valheim_SERVER_NAME=ForValheim
 ENV Valheim_SAVE_NAME=ForValhalla
 ENV Valheim_SERVER_PASSWORD=ForGot
+ENV Valheim_VALIDATE_ON_RUN=0
 
 RUN : &&\
 	install -m 555 /dev/stdin /home/leaf/start.sh <<<'\
 '$'#!/bin/bash\n\
 set -e\n\
-~/Steam/steamcmd.sh +force_install_dir ~/Valheim +login anonymous +app_update 896660 validate +quit\n\
+test "${Valheim_VALIDATE_ON_RUN}" -eq 1 &&\
+	~/Steam/steamcmd.sh +force_install_dir ~/Valheim +login anonymous +app_update 896660 validate +quit\n\
 export LD_LIBRARY_PATH="${HOME}/Valheim/linux64:${LD_LIBRARY_PATH}"\n\
 cd ~/Valheim\n\
 exec ~/Valheim/valheim_server.x86_64\
