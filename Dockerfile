@@ -11,6 +11,9 @@ RUN : &&\
 :
 SHELL ["/bin/bash", "-c"]
 
+RUN useradd -s /bin/bash -m leaf
+USER leaf
+
 RUN : &&\
 	mkdir -p ~/Steam &&\
 	cd ~/Steam &&\
@@ -28,7 +31,7 @@ ENV Valheim_SAVE_NAME=ForValhalla
 ENV Valheim_SERVER_PASSWORD=ForGot
 
 RUN : &&\
-	install -m 555 /dev/stdin ~/start.sh <<<'\
+	install -m 555 /dev/stdin /home/leaf/start.sh <<<'\
 '$'#!/bin/bash\n\
 set -e\n\
 ~/Steam/steamcmd.sh +force_install_dir ~/Valheim +login anonymous +app_update 896660 validate +quit\n\
@@ -46,4 +49,4 @@ exec ~/Valheim/valheim_server.x86_64\
 
 STOPSIGNAL SIGINT
 
-CMD ["/root/start.sh"]
+CMD ["/home/leaf/start.sh"]
