@@ -5,3 +5,9 @@
 
 !Dockerfile
 !.dockerignore
+
+!docker/
+!docker/*.sh
+
+!podman/
+!podman/*.sh
