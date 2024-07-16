@@ -36,19 +36,22 @@ RUN : &&\
 '$'#!/bin/bash\n\
 set -e\n\
 test "${Valheim_VALIDATE_ON_RUN}" -eq 1 &&\
-	~/Steam/steamcmd.sh +force_install_dir ~/Valheim +login anonymous +app_update 896660 validate +quit\n\
-export LD_LIBRARY_PATH="${HOME}/Valheim/linux64:${LD_LIBRARY_PATH}"\n\
+ ~/Steam/steamcmd.sh +force_install_dir ~/Valheim +login anonymous +app_update 896660 validate +quit\n\
+export SteamAppId=892970\n\
+export LD_LIBRARY_PATH=~/Valheim/linux64:${LD_LIBRARY_PATH}\n\
 cd ~/Valheim\n\
 exec ~/Valheim/valheim_server.x86_64\
-  -nographics\
-  -batchmode\
-  -port 2456\
-  -name ${Valheim_SERVER_NAME}\
-  -world ${Valheim_SAVE_NAME}\
-  -password ${Valheim_SERVER_PASSWORD}\
+ -public 0\
+ -port 2456\
+ -savedir ~/Valheim.save\
+ -name ${Valheim_SERVER_NAME}\
+ -world ${Valheim_SAVE_NAME}\
+ -password ${Valheim_SERVER_PASSWORD}\
 ' &&\
 :
 
 STOPSIGNAL SIGINT
+
+EXPOSE 2456/udp 2457/udp 2458/udp
 
 CMD ["/home/leaf/start.sh"]
