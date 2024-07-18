@@ -10,4 +10,4 @@ Valheim_CONTAINER_ID="$(trs <<<"${Valheim_CONTAINER_ID:-1}")"
 
 # --------------------------------------------------------------------------
 
-sudo docker container start vds_instance_"${Valheim_CONTAINER_ID}"
+docker container start vds_instance_"${Valheim_CONTAINER_ID}"
