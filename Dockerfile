@@ -5,7 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN : &&\
 	dpkg --add-architecture i386 &&\
 	apt update &&\
-	apt full-upgrade -y bash curl locales libc6:i386 &&\
+	apt full-upgrade -y coreutils passwd bash sed curl locales libc6:i386 &&\
 	sed '/^#\s*en_US.UTF-8/s/^#\s*//' -i /etc/locale.gen &&\
 	dpkg-reconfigure locales &&\
 :
@@ -14,13 +14,13 @@ RUN useradd -s /bin/bash -m leaf
 USER leaf
 
 RUN : &&\
-	mkdir -p ~/Steam &&\
+	install -d ~/Steam &&\
 	cd ~/Steam &&\
 	curl -sSL https://media.steampowered.com/client/steamcmd_linux.tar.gz | tar zxf - &&\
 :
 
 RUN : &&\
-	mkdir -p ~/Valheim &&\
+	install -d ~/Valheim &&\
 	cd ~/Valheim &&\
 	~/Steam/steamcmd.sh +force_install_dir ~/Valheim +login anonymous +app_update 896660 validate +quit &&\
 :
