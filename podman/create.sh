@@ -24,10 +24,10 @@ podman container inspect vds_instance_"${Valheim_CONTAINER_ID}" >/dev/null 2>&1 
 	podman container rm   vds_instance_"${Valheim_CONTAINER_ID}" ||:
 }
 
-sudont install -d "${PWD}"/Valheim.save
+sudont install -d "${PWD}"/Valheim.save/worlds_local
 
 podman container create \
- --mount type=bind,src="${PWD}"/Valheim.save,dst=/home/leaf/Valheim.save \
+ --mount type=bind,src="${PWD}"/Valheim.save,dst=/home/leaf/Valheim.save,chown \
  --publish 2456-2458:2456-2458/udp \
  --stop-signal=SIGINT \
  --stop-timeout=60 \
