@@ -43,6 +43,9 @@ exec ~/Valheim/valheim_server.x86_64\
  -public 0\
  -port 2456\
  -savedir ~/Valheim.save\
+ -backups 10\
+ -backupshort 3600\
+ -backuplong 36000\
  -name \"\${Valheim_SERVER_NAME}\"\
  -world \"\${Valheim_SAVE_NAME}\"\
  -password \"\${Valheim_SERVER_PASSWORD}\"\
