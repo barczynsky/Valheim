@@ -4,8 +4,11 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN : &&\
 	dpkg --add-architecture i386 &&\
+	echo "APT::Install-Recommends \"0\";\nAPT::Install-Suggests \"0\";" >/etc/apt/apt.conf.d/01norecommends &&\
 	apt update &&\
-	apt full-upgrade -y coreutils passwd bash sed curl locales libc6:i386 &&\
+	apt full-upgrade -y bash coreutils passwd sed ca-certificates curl locales libc6:i386 \
+	libatomic1 libpulse0 libpulse-mainloop-glib0 \
+	&&\
 	sed '/^#\s*en_US.UTF-8/s/^#\s*//' -i /etc/locale.gen &&\
 	dpkg-reconfigure locales &&\
 :
