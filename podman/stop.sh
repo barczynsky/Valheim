@@ -5,4 +5,4 @@ set -eu
 
 # --------------------------------------------------------------------------
 
-podman container stop vds_instance_"${Valheim_CONTAINER_ID}"
+"${Valheim_CONTAINER_TOOL}" container stop vds_instance_"${Valheim_CONTAINER_ID}"

@@ -5,4 +5,4 @@ set -eu
 
 # --------------------------------------------------------------------------
 
-podman container start vds_instance_"${Valheim_CONTAINER_ID}"
+"${Valheim_CONTAINER_TOOL}" container start vds_instance_"${Valheim_CONTAINER_ID}"

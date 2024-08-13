@@ -1,5 +1,3 @@
 #!/bin/bash
 set -eu
-podman() { docker "$@"; }
-export -f podman
-podman/remove.sh
+Valheim_CONTAINER_TOOL="docker" podman/remove.sh
