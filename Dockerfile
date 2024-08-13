@@ -29,6 +29,7 @@ ENV Valheim_SERVER_NAME=ForValheim
 ENV Valheim_SAVE_NAME=ForValhalla
 ENV Valheim_SERVER_PASSWORD=ForGot
 ENV Valheim_VALIDATE_ON_RUN=0
+ENV Valheim_SERVER_PUBLIC=0
 
 RUN : &&\
 	/bin/bash -euc "install -m 555 /dev/stdin /home/leaf/vds_start.sh <<<'\
@@ -40,7 +41,7 @@ export SteamAppId=892970\n\
 export LD_LIBRARY_PATH=~/Valheim/linux64:\"\${LD_LIBRARY_PATH}\"\n\
 cd ~/Valheim\n\
 exec ~/Valheim/valheim_server.x86_64\
- -public 0\
+ -public \"\${Valheim_SERVER_PUBLIC}\"\
  -port 2456\
  -savedir ~/Valheim.save\
  -backups 10\
