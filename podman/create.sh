@@ -10,9 +10,9 @@ set -eu
  --ulimit nofile=2048:2048 \
  - <Dockerfile
 
-"${Valheim_CONTAINER_TOOL}" container inspect vds_instance_"${Valheim_CONTAINER_ID}" >/dev/null 2>&1 && {
-	"${Valheim_CONTAINER_TOOL}" container stop vds_instance_"${Valheim_CONTAINER_ID}" ||:
-	"${Valheim_CONTAINER_TOOL}" container rm   vds_instance_"${Valheim_CONTAINER_ID}" ||:
+"${Valheim_CONTAINER_TOOL}" container inspect vds_instance_"${Valheim_IMAGE_ID}"_"${Valheim_CONTAINER_ID}" >/dev/null 2>&1 && {
+	"${Valheim_CONTAINER_TOOL}" container stop vds_instance_"${Valheim_IMAGE_ID}"_"${Valheim_CONTAINER_ID}" ||:
+	"${Valheim_CONTAINER_TOOL}" container rm   vds_instance_"${Valheim_IMAGE_ID}"_"${Valheim_CONTAINER_ID}" ||:
 }
 
 sudont install -d "${PWD}"/Valheim.save/worlds_local
@@ -27,5 +27,5 @@ sudont install -d "${PWD}"/Valheim.save/worlds_local
  --env Valheim_SERVER_PASSWORD \
  --env Valheim_VALIDATE_ON_RUN \
  --env Valheim_SERVER_PUBLIC \
- --name vds_instance_"${Valheim_CONTAINER_ID}" \
+ --name vds_instance_"${Valheim_IMAGE_ID}"_"${Valheim_CONTAINER_ID}" \
  vds_image_"${Valheim_IMAGE_ID}"
