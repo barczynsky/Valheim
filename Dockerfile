@@ -31,7 +31,7 @@ ENV Valheim_SERVER_PASSWORD=ForGot
 ENV Valheim_VALIDATE_ON_RUN=0
 
 RUN : &&\
-	/bin/bash -euc "install -m 555 /dev/stdin /home/leaf/start.sh <<<'\
+	/bin/bash -euc "install -m 555 /dev/stdin /home/leaf/vds_start.sh <<<'\
 '$'#!/bin/bash\n\
 set -e\n\
 test \"\${Valheim_VALIDATE_ON_RUN}\" -eq 1 &&\
@@ -56,4 +56,4 @@ STOPSIGNAL SIGINT
 
 EXPOSE 2456/udp 2457/udp 2458/udp
 
-CMD ["/home/leaf/start.sh"]
+CMD ["/home/leaf/vds_start.sh"]
