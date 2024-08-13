@@ -10,4 +10,5 @@
 !docker/*.sh
 
 !podman/
+!podman/.config
 !podman/*.sh
